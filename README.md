@@ -35,6 +35,14 @@ If `python` points to the Microsoft Store launcher, use:
 py -3 -m pip install -r requirements.txt
 ```
 
+Create local environment settings only if you need to override defaults:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Do not put real secrets in committed files. `.env` and `.env.*` are ignored by Git.
+
 ## Quick Start
 
 From the repository root:
@@ -103,6 +111,18 @@ Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8080/submit -Body '{"packet
 
 Stop the server with `Ctrl+C` in the terminal where it is running.
 
+Run the API health check from another terminal while the server is running:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\health_check.ps1
+```
+
+To point at another server:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\health_check.ps1 -BaseUrl http://127.0.0.1:8080
+```
+
 ## Git Workflow
 
 Check the current branch, local changes, and recent commits:
@@ -155,7 +175,6 @@ This repository may describe wallet, purchase, automation, and integration surfa
 ## Next Build Targets
 
 - Add a `.env.example` with non-secret configuration names.
-- Add a simple health-check script for the local API endpoints.
 - Expand diagnostics with clearer pass/fail summaries.
 - Add tests for the Python modules and endpoint responses.
 - Add release notes once the MK3 package reaches a stable milestone.
