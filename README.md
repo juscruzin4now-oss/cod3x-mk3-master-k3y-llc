@@ -6,6 +6,7 @@ The current package is designed to be run locally first. Wallet, purchase, and S
 
 ## Repository Layout
 
+- `CHANGELOG.md` - Build history and release notes.
 - `mk3_system/` - Python CLI, orchestrator, diagnostics, component model, and local API server.
 - `scripts/` - PowerShell entry points for running MK3, diagnostics, module status, server, Git status, and Stripe balance checks.
 - `system/` - Core behavior, parser schema, manifest, and mimic engine maps.
@@ -188,6 +189,6 @@ This repository may describe wallet, purchase, automation, and integration surfa
 
 ## Next Build Targets
 
-- Add a `.env.example` with non-secret configuration names.
-- Expand diagnostics with clearer pass/fail summaries.
-- Add release notes once the MK3 package reaches a stable milestone.
+- Add release/version tagging once the package reaches a stable milestone.
+- Expand endpoint tests if the command interface API gains new routes.
+- Add packaging notes for deployment beyond local operator use.
