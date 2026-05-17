@@ -75,6 +75,12 @@ Run diagnostics:
 .\scripts\run_diagnostics.ps1
 ```
 
+Run the Python test suite:
+
+```powershell
+python -m pytest
+```
+
 Check module packet status:
 
 ```powershell
@@ -146,6 +152,8 @@ The current remote is expected to be:
 https://github.com/juscruzin4now-oss/cod3x-mk3-master-k3y-llc.git
 ```
 
+GitHub Actions runs the Python tests, MK3 verification, and diagnostics on pushes to `main` and on pull requests.
+
 ## Stripe Balance Check
 
 Stripe support is intentionally limited to a manual balance check. The repository does not store API keys.
@@ -176,5 +184,4 @@ This repository may describe wallet, purchase, automation, and integration surfa
 
 - Add a `.env.example` with non-secret configuration names.
 - Expand diagnostics with clearer pass/fail summaries.
-- Add tests for the Python modules and endpoint responses.
 - Add release notes once the MK3 package reaches a stable milestone.
