@@ -1,0 +1,14 @@
+{
+  "registry": "app.ui.screens",
+  "entries": [
+    {
+      "file_id": "APP.UI.FRAMESET.V1",
+      "name": "ui_frameset.json",
+      "type": "JSON",
+      "version": "1.0",
+      "path": "/app/ui/screens/ui_frameset.json",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

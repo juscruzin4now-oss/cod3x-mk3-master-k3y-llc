@@ -1,0 +1,14 @@
+{
+  "registry": "branding.core",
+  "entries": [
+    {
+      "file_id": "MANTRA.CORE.IDENTITY.V1",
+      "name": "codex_identity.txt",
+      "type": "TEXT",
+      "version": "1.0",
+      "path": "/branding/core/codex_identity.txt",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

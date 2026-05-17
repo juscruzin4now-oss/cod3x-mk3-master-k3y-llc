@@ -1,0 +1,27 @@
+<<FILE_HEADER>>
+TYPE = MAP
+NAME = permissions.map
+VERSION = 1.0
+SYSTEM_PATH = /app/security/permissions/
+FILE_ID = APP.SECURITY.PERMISSIONS.V1
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+PERMISSIONS_V1
+
+[roles]
+owner = install, register, verify, release
+operator = install, verify
+viewer = read_status
+
+[guards]
+destructive_actions = owner
+network_publish = owner
+packet_install = operator
+status_report = viewer
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = APP.SECURITY.PERMISSIONS.V1

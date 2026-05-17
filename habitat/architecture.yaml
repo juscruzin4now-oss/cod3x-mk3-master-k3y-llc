@@ -1,0 +1,103 @@
+codex_habitat:
+  version: "1.0"
+  objective: "Scale Codex MK3 from a single-user local system to a public, monitored, container-ready service."
+
+  compute:
+    primary_node:
+      role: "agent execution and public API"
+      runtime: "container"
+      autoscaling:
+        min_instances: 1
+        target_cpu_percent: 60
+        target_memory_percent: 70
+    worker_nodes:
+      role: "async task execution, queue processing, diagnostics"
+      runtime: "container"
+      autoscaling:
+        min_instances: 1
+        queue_depth_target: 100
+
+  storage:
+    memory_layer:
+      type: "persistent object and relational storage"
+      encryption: "required"
+      versioning: "required"
+      backups: "daily"
+    artifacts:
+      type: "versioned object storage"
+      retention_days: 90
+
+  network:
+    ingress:
+      tls: "required"
+      public_routes:
+        - "GET /status"
+        - "GET /mk3/info"
+        - "POST /submit"
+    egress:
+      default_policy: "deny_by_default"
+      allowlist_required: true
+    api_gateway:
+      rate_limit_per_minute: 120
+      auth_required_for_agent_commands: true
+
+  services:
+    identity_access:
+      status: "required"
+      responsibilities: ["authn", "authz", "role policy"]
+    task_orchestration:
+      status: "required"
+      responsibilities: ["queue", "dispatch", "retry", "dead_letter"]
+    autonomy_loop:
+      status: "required"
+      loop: ["observe", "decide", "act"]
+    memory_layer:
+      status: "required"
+      responsibilities: ["write", "read", "version", "audit"]
+    command_interface_api:
+      status: "required"
+      responsibilities: ["public status", "private command intake", "agent control"]
+    emotion_module:
+      status: "required"
+      components:
+        - "affect_recognition"
+        - "affect_expression"
+        - "contextual_emotional_weighting"
+        - "adaptive_tone_engine"
+
+  telemetry:
+    logs:
+      format: "json"
+      required_fields: ["timestamp", "service", "level", "event", "trace_id"]
+    metrics:
+      required:
+        - "request_latency_ms"
+        - "error_rate"
+        - "active_users"
+        - "task_volume"
+        - "autonomy_loop_stability"
+    alerts:
+      error_rate_percent: 2
+      p95_latency_ms: 750
+      autonomy_loop_failures_per_hour: 3
+
+  diagnostics:
+    required_checks:
+      - "autonomy_loop"
+      - "memory_write_read"
+      - "api_latency"
+      - "security_boundary"
+      - "stress_100_to_500_users"
+
+  launch:
+    public_endpoint:
+      dns_binding: "required"
+      ssl_activation: "required"
+      rate_limits: "required"
+      api_docs: "required"
+    first_48_hours:
+      watch:
+        - "user_count"
+        - "task_volume"
+        - "error_rates"
+        - "autonomy_loop_stability"

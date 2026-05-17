@@ -1,0 +1,22 @@
+<<FILE_HEADER>>
+TYPE = EMBED
+NAME = branding.embed
+VERSION = 1.0
+SYSTEM_PATH = /web/ui/branding/
+FILE_ID = WEB.UI.BRANDING.EMBED.V1
+FILE_HASH = 125c8fadb06d982e622d2ea50eff55a89654e8737e5f72d4c54edb517347f0fe
+FILE_SIGNATURE = 95ee3828822d483cde7904cc6f1244948e59fe62b0246d08beff6d9f77ca54f3
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+BRANDING_V1
+
+mantra = "Codex MK3 -- the one you control, not them."
+placement = header, footer, hero_section
+
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = WEB.UI.BRANDING.EMBED.V1

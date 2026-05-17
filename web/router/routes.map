@@ -1,0 +1,22 @@
+<<FILE_HEADER>>
+TYPE = MAP
+NAME = routes.map
+VERSION = 1.0
+SYSTEM_PATH = /web/router/
+FILE_ID = WEB.ROUTER.ROUTES.V1
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+ROUTES_V1
+
+/ = homepage
+/about = identity_page
+/mk3 = system_overview
+/contact = form_page
+
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = WEB.ROUTER.ROUTES.V1

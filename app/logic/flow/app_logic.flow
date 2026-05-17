@@ -1,0 +1,31 @@
+<<FILE_HEADER>>
+TYPE = FLOW
+NAME = app_logic.flow
+VERSION = 1.0
+SYSTEM_PATH = /app/logic/flow/
+FILE_ID = APP.LOGIC.FLOW.V1
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+FLOW_V1
+
+[ingest_packet]
+input = packet
+validate = schema, permissions
+output = staged_packet
+
+[register_packet]
+input = staged_packet
+validate = target_path, file_id
+output = registered_component
+
+[report_status]
+input = registered_component
+validate = module_completeness
+output = module_status
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = APP.LOGIC.FLOW.V1

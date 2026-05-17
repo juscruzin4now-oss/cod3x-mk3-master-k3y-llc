@@ -1,0 +1,14 @@
+{
+  "registry": "marketing.prelaunch.phase5",
+  "entries": [
+    {
+      "file_id": "PRELAUNCH.PHASE5.LAUNCH.V1",
+      "name": "phase5_launch.plan",
+      "type": "PLAN",
+      "version": "1.0",
+      "path": "/marketing/prelaunch/phase5/phase5_launch.plan",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

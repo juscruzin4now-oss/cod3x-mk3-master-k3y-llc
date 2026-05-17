@@ -1,0 +1,35 @@
+INTEGRATION_POINTS_MAP v1.0
+-------------------------------------
+
+[CORE]
+- autonomy_profile.cfg  ->  /system/behavior/autonomy/
+- codex_mk3.schema      ->  /system/parser/v3/
+- mimic_engine.map      ->  /system/mimic/engine/
+- core_manifest.json    ->  /system/manifest/
+
+[WEB]
+- index.layout          ->  /web/ui/root/
+- routes.map            ->  /web/router/
+- api_endpoints.list    ->  /web/api/definitions/
+- branding.embed        ->  /web/ui/branding/
+
+[APP]
+- ui_frameset.json      ->  /app/ui/screens/
+- app_logic.flow        ->  /app/logic/flow/
+- permissions.map       ->  /app/security/permissions/
+
+[MANTRA]
+- codex_identity.txt    ->  /branding/core/
+- logo_positions.map    ->  /branding/placement/
+- tone_guide.md         ->  /branding/tone/
+
+[PRELAUNCH]
+- phase1_tease.plan     ->  /marketing/prelaunch/phase1/
+- phase2_identity.plan  ->  /marketing/prelaunch/phase2/
+- phase3_capabilities.plan -> /marketing/prelaunch/phase3/
+- phase4_hype.plan      ->  /marketing/prelaunch/phase4/
+- phase5_launch.plan    ->  /marketing/prelaunch/phase5/
+
+[OPS]
+- update_steps.md       ->  /ops/update/
+- post_update_checks.list -> /ops/checks/

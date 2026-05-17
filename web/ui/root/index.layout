@@ -1,0 +1,19 @@
+<<FILE_HEADER>>
+TYPE = LAYOUT
+NAME = index.layout
+VERSION = 1.0
+SYSTEM_PATH = /web/ui/root/
+FILE_ID = WEB.UI.ROOT.INDEX.V1
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+LAYOUT_V1
+header = branding
+body = hero, features, call_to_action
+footer = links
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = WEB.UI.ROOT.INDEX.V1

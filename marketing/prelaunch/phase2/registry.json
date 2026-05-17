@@ -1,0 +1,14 @@
+{
+  "registry": "marketing.prelaunch.phase2",
+  "entries": [
+    {
+      "file_id": "PRELAUNCH.PHASE2.IDENTITY.V1",
+      "name": "phase2_identity.plan",
+      "type": "PLAN",
+      "version": "1.0",
+      "path": "/marketing/prelaunch/phase2/phase2_identity.plan",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

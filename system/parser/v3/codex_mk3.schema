@@ -1,0 +1,29 @@
+<<FILE_HEADER>>
+TYPE = SCHEMA
+NAME = codex_mk3.schema
+VERSION = 3.0
+SYSTEM_PATH = /system/parser/v3/
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+SCHEMA_VERSION = 3.0
+
+[COMMAND_STRUCTURE]
+trigger = string
+scope = string
+payload = object
+constraints = object
+
+[VALIDATION]
+strict = true
+hierarchical = true
+allow_null = false
+
+[ROUTING]
+default_path = /system/parser/v3/
+fallback_path = /system/parser/legacy/
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY

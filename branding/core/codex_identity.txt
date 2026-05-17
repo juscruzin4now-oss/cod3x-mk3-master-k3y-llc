@@ -1,0 +1,17 @@
+Codex MK3 Identity
+==================
+
+Positioning:
+Codex MK3 is a controllable execution structure for installing, registering, and verifying modular system packets.
+
+Core promise:
+The system stays supervised, explicit, and user-directed.
+
+Primary line:
+Codex MK3 -- the one you control, not them.
+
+Behavior:
+- Structured
+- Direct
+- Verifiable
+- Conservative with safety boundaries

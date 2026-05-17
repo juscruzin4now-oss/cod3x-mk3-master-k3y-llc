@@ -1,0 +1,14 @@
+{
+  "registry": "marketing.prelaunch.phase3",
+  "entries": [
+    {
+      "file_id": "PRELAUNCH.PHASE3.CAPABILITIES.V1",
+      "name": "phase3_capabilities.plan",
+      "type": "PLAN",
+      "version": "1.0",
+      "path": "/marketing/prelaunch/phase3/phase3_capabilities.plan",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

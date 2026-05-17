@@ -1,0 +1,14 @@
+{
+  "registry": "web.router",
+  "entries": [
+    {
+      "file_id": "WEB.ROUTER.ROUTES.V1",
+      "name": "routes.map",
+      "type": "MAP",
+      "version": "1.0",
+      "path": "/web/router/routes.map",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

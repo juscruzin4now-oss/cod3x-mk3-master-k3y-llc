@@ -1,0 +1,14 @@
+{
+  "registry": "web.api.definitions",
+  "entries": [
+    {
+      "file_id": "WEB.API.ENDPOINTS.V1",
+      "name": "api_endpoints.list",
+      "type": "LIST",
+      "version": "1.0",
+      "path": "/web/api/definitions/api_endpoints.list",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

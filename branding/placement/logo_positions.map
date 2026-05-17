@@ -1,0 +1,22 @@
+<<FILE_HEADER>>
+TYPE = MAP
+NAME = logo_positions.map
+VERSION = 1.0
+SYSTEM_PATH = /branding/placement/
+FILE_ID = MANTRA.PLACEMENT.LOGO.V1
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+LOGO_POSITIONS_V1
+
+header = top_left
+footer = left_aligned
+hero_section = above_primary_headline
+social_preview = center_lockup
+release_notes = document_header
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = MANTRA.PLACEMENT.LOGO.V1

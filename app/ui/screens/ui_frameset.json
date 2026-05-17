@@ -1,0 +1,23 @@
+{
+  "file_id": "APP.UI.FRAMESET.V1",
+  "version": "1.0",
+  "system_path": "/app/ui/screens/",
+  "register": true,
+  "screens": [
+    {
+      "id": "dashboard",
+      "title": "Module Dashboard",
+      "regions": ["status_rail", "module_grid", "activity_log"]
+    },
+    {
+      "id": "packet_review",
+      "title": "Packet Review",
+      "regions": ["packet_header", "payload_viewer", "validation_panel"]
+    },
+    {
+      "id": "launch_control",
+      "title": "Launch Control",
+      "regions": ["phase_tracker", "approval_queue", "release_actions"]
+    }
+  ]
+}

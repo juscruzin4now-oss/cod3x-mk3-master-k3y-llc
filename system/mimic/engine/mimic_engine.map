@@ -1,0 +1,37 @@
+<<FILE_HEADER>>
+TYPE = MAP
+NAME = mimic_engine.map
+VERSION = 3.0
+SYSTEM_PATH = /system/mimic/engine/
+FILE_ID = CORE.MIMIC.ENGINE.V3
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+MIMIC_ENGINE_V3
+
+[layer_1]
+id = L1
+name = pattern_capture
+input = user_behavior
+output = pattern_vector
+
+[layer_2]
+id = L2
+name = behavior_projection
+input = pattern_vector
+output = projected_response
+
+[layer_3]
+id = L3
+name = constraint_filter
+input = projected_response
+output = safe_output
+
+[output]
+final = safe_output
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = CORE.MIMIC.ENGINE.V3

@@ -1,0 +1,14 @@
+{
+  "registry": "web.ui.root",
+  "entries": [
+    {
+      "file_id": "WEB.UI.ROOT.INDEX.V1",
+      "name": "index.layout",
+      "type": "LAYOUT",
+      "version": "1.0",
+      "path": "/web/ui/root/index.layout",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

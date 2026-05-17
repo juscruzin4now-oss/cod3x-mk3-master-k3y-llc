@@ -1,0 +1,14 @@
+{
+  "registry": "branding.placement",
+  "entries": [
+    {
+      "file_id": "MANTRA.PLACEMENT.LOGO.V1",
+      "name": "logo_positions.map",
+      "type": "MAP",
+      "version": "1.0",
+      "path": "/branding/placement/logo_positions.map",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

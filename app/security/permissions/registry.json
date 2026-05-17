@@ -1,0 +1,14 @@
+{
+  "registry": "app.security.permissions",
+  "entries": [
+    {
+      "file_id": "APP.SECURITY.PERMISSIONS.V1",
+      "name": "permissions.map",
+      "type": "MAP",
+      "version": "1.0",
+      "path": "/app/security/permissions/permissions.map",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

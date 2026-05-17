@@ -1,0 +1,14 @@
+{
+  "registry": "system.mimic.engine",
+  "entries": [
+    {
+      "file_id": "CORE.MIMIC.ENGINE.V3",
+      "name": "mimic_engine.map",
+      "type": "MAP",
+      "version": "3.0",
+      "path": "/system/mimic/engine/mimic_engine.map",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

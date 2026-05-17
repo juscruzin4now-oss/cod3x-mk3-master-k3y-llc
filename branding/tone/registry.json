@@ -1,0 +1,14 @@
+{
+  "registry": "branding.tone",
+  "entries": [
+    {
+      "file_id": "MANTRA.TONE.GUIDE.V1",
+      "name": "tone_guide.md",
+      "type": "MARKDOWN",
+      "version": "1.0",
+      "path": "/branding/tone/tone_guide.md",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

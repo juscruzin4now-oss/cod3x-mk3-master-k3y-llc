@@ -1,0 +1,14 @@
+{
+  "registry": "app.logic.flow",
+  "entries": [
+    {
+      "file_id": "APP.LOGIC.FLOW.V1",
+      "name": "app_logic.flow",
+      "type": "FLOW",
+      "version": "1.0",
+      "path": "/app/logic/flow/app_logic.flow",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

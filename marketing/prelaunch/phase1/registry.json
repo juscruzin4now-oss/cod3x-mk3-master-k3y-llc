@@ -1,0 +1,14 @@
+{
+  "registry": "marketing.prelaunch.phase1",
+  "entries": [
+    {
+      "file_id": "PRELAUNCH.PHASE1.TEASE.V1",
+      "name": "phase1_tease.plan",
+      "type": "PLAN",
+      "version": "1.0",
+      "path": "/marketing/prelaunch/phase1/phase1_tease.plan",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

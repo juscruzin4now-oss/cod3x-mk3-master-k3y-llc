@@ -1,0 +1,16 @@
+{
+  "registry": "web.ui.branding",
+  "entries": [
+    {
+      "file_id": "WEB.UI.BRANDING.EMBED.V1",
+      "name": "branding.embed",
+      "type": "EMBED",
+      "version": "1.0",
+      "path": "/web/ui/branding/branding.embed",
+      "hash": "125c8fadb06d982e622d2ea50eff55a89654e8737e5f72d4c54edb517347f0fe",
+      "signature": "95ee3828822d483cde7904cc6f1244948e59fe62b0246d08beff6d9f77ca54f3",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "registry": "marketing.prelaunch.phase4",
+  "entries": [
+    {
+      "file_id": "PRELAUNCH.PHASE4.HYPE.V1",
+      "name": "phase4_hype.plan",
+      "type": "PLAN",
+      "version": "1.0",
+      "path": "/marketing/prelaunch/phase4/phase4_hype.plan",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}
