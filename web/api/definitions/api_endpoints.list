@@ -13,6 +13,7 @@ ENDPOINTS_V1
 GET /status
 POST /submit
 GET /mk3/info
+GET /auth/creator
 
 <<PAYLOAD_END>>
 

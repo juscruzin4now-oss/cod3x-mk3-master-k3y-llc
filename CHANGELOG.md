@@ -26,6 +26,7 @@ All notable Codex MK3 package updates are tracked here.
 - HTTP endpoint tests for `/status`, `/mk3/info`, `/submit`, and not-found responses.
 - Creator auth policy packet and documentation.
 - Read-only creator auth API status endpoint.
+- Static API endpoint definitions synced with creator auth status route.
 
 ### Changed
 
