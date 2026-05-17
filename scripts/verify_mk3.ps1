@@ -6,7 +6,7 @@ $BundledPython = Join-Path $env:USERPROFILE ".cache\codex-runtimes\codex-primary
 $Python = Get-Command python -ErrorAction SilentlyContinue
 $PyLauncher = Get-Command py -ErrorAction SilentlyContinue
 
-if ($Python) {
+if ($Python -and $Python.Source -notlike "*\WindowsApps\python.exe") {
     $PythonExe = $Python.Source
     $PythonArgs = @()
 } elseif ($PyLauncher) {
