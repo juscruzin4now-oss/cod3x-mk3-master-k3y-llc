@@ -31,3 +31,11 @@ Creator auth is included in the APP module status check. Run:
 powershell -ExecutionPolicy Bypass -File .\scripts\run_diagnostics.ps1
 python -m pytest
 ```
+
+When the local API is running, creator auth policy status is available at:
+
+```text
+GET /auth/creator
+```
+
+The endpoint returns policy status only. It does not return credentials, tokens, keys, or secret material.

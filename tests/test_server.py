@@ -1,7 +1,7 @@
 from http.client import HTTPConnection
 from threading import Thread
 
-from mk3_system.server import Handler, ThreadingHTTPServer, mk3_info, module_status
+from mk3_system.server import Handler, ThreadingHTTPServer, creator_auth_status, mk3_info, module_status
 
 
 def test_module_status_reports_online_packets() -> None:
@@ -23,6 +23,16 @@ def test_mk3_info_exposes_expected_services() -> None:
     assert info["version"] == "3.0.0"
     assert "command_interface_api" in info["services"]
     assert "modules" in info
+
+
+def test_creator_auth_status_exposes_policy_without_secrets() -> None:
+    auth = creator_auth_status()
+
+    assert auth["status"] == "CREATOR_AUTH_READY"
+    assert auth["mode"] == "manual_assertion"
+    assert auth["credential_storage"] == "external_only"
+    assert auth["secret_material"] == "prohibited_in_repository"
+    assert all(auth["guards"].values())
 
 
 def request(server: ThreadingHTTPServer, method: str, path: str, body: str | None = None) -> tuple[int, str]:
@@ -49,6 +59,7 @@ def test_http_endpoints_serve_status_info_submit_and_not_found() -> None:
     try:
         status_code, status_body = request(server, "GET", "/status")
         info_code, info_body = request(server, "GET", "/mk3/info")
+        auth_code, auth_body = request(server, "GET", "/auth/creator")
         submit_code, submit_body = request(server, "POST", "/submit", '{"packet":"test"}')
         missing_code, missing_body = request(server, "GET", "/missing")
     finally:
@@ -60,6 +71,9 @@ def test_http_endpoints_serve_status_info_submit_and_not_found() -> None:
     assert '"status": "OK"' in status_body
     assert info_code == 200
     assert '"name": "Codex MK3"' in info_body
+    assert auth_code == 200
+    assert '"status": "CREATOR_AUTH_READY"' in auth_body
+    assert '"secret_material": "prohibited_in_repository"' in auth_body
     assert submit_code == 200
     assert '"status": "ACCEPTED"' in submit_body
     assert '"bytes_received": 17' in submit_body

@@ -25,6 +25,7 @@ All notable Codex MK3 package updates are tracked here.
 - `VERSION`, `RELEASE_CHECKLIST.md`, and `DEPLOYMENT.md` release support files.
 - HTTP endpoint tests for `/status`, `/mk3/info`, `/submit`, and not-found responses.
 - Creator auth policy packet and documentation.
+- Read-only creator auth API status endpoint.
 
 ### Changed
 

@@ -116,6 +116,7 @@ Available endpoints:
 
 - `GET /status` - Returns module health and missing packet status.
 - `GET /mk3/info` - Returns MK3 metadata, services, architecture path, and module report.
+- `GET /auth/creator` - Returns creator auth policy readiness and guard status.
 - `POST /submit` - Accepts a submitted packet body and returns byte count.
 
 Example requests:
@@ -123,6 +124,7 @@ Example requests:
 ```powershell
 Invoke-RestMethod http://127.0.0.1:8080/status
 Invoke-RestMethod http://127.0.0.1:8080/mk3/info
+Invoke-RestMethod http://127.0.0.1:8080/auth/creator
 Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8080/submit -Body '{"packet":"demo"}' -ContentType 'application/json'
 ```
 

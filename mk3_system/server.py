@@ -8,6 +8,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+CREATOR_AUTH_PATH = ROOT / "app" / "security" / "creator_auth" / "creator.auth"
 
 
 def module_status() -> dict[str, Any]:
@@ -75,6 +76,30 @@ def mk3_info() -> dict[str, Any]:
     }
 
 
+def creator_auth_status() -> dict[str, Any]:
+    exists = CREATOR_AUTH_PATH.exists()
+    content = CREATOR_AUTH_PATH.read_text(encoding="utf-8") if exists else ""
+    required_guards = {
+        "automatic_purchase": "denied",
+        "automatic_wallet_transfer": "denied",
+        "stored_secret": "denied",
+        "plaintext_token": "denied",
+        "manual_operator_confirmation": "required",
+    }
+    guards = {
+        key: f"{key} = {value}" in content
+        for key, value in required_guards.items()
+    }
+    return {
+        "status": "CREATOR_AUTH_READY" if exists and all(guards.values()) else "CREATOR_AUTH_ATTENTION_REQUIRED",
+        "policy_file": str(CREATOR_AUTH_PATH),
+        "mode": "manual_assertion",
+        "credential_storage": "external_only",
+        "secret_material": "prohibited_in_repository",
+        "guards": guards,
+    }
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "CodexMK3/3.0"
 
@@ -84,6 +109,9 @@ class Handler(BaseHTTPRequestHandler):
             return
         if self.path == "/mk3/info":
             self._json(mk3_info())
+            return
+        if self.path == "/auth/creator":
+            self._json(creator_auth_status())
             return
         self._json({"error": "not_found"}, status=404)
 
