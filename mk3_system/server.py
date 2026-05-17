@@ -28,6 +28,7 @@ def module_status() -> dict[str, Any]:
             ("ui_frameset.json", "app/ui/screens"),
             ("app_logic.flow", "app/logic/flow"),
             ("permissions.map", "app/security/permissions"),
+            ("creator.auth", "app/security/creator_auth"),
         ],
         "MANTRA": [
             ("codex_identity.txt", "branding/core"),

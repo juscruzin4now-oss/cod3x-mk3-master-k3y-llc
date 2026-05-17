@@ -1,0 +1,40 @@
+<<FILE_HEADER>>
+TYPE = AUTH_POLICY
+NAME = creator.auth
+VERSION = 1.0
+SYSTEM_PATH = /app/security/creator_auth/
+FILE_ID = APP.SECURITY.CREATOR_AUTH.V1
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+CREATOR_AUTH_V1
+
+[identity]
+creator_id = local_operator_defined
+auth_mode = manual_assertion
+credential_storage = external_only
+secret_material = prohibited_in_repository
+
+[roles]
+creator = owner, operator, release_manager
+delegate_operator = operator
+observer = viewer
+
+[requirements]
+release_approval = creator
+network_publish_approval = creator
+payment_or_wallet_approval = creator
+credential_rotation = creator
+
+[guards]
+automatic_purchase = denied
+automatic_wallet_transfer = denied
+stored_secret = denied
+plaintext_token = denied
+manual_operator_confirmation = required
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = APP.SECURITY.CREATOR_AUTH.V1

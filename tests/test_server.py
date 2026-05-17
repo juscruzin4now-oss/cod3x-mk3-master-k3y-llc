@@ -10,6 +10,7 @@ def test_module_status_reports_online_packets() -> None:
     assert modules["CORE"]["status"] == "CORE_ONLINE"
     assert modules["WEB"]["status"] == "WEB_ONLINE"
     assert modules["APP"]["status"] == "APP_ONLINE"
+    assert "creator.auth" not in modules["APP"]["missing"]
     assert modules["MANTRA"]["status"] == "MANTRA_ONLINE"
     assert modules["PRELAUNCH"]["status"] == "PRELAUNCH_ONLINE"
     assert all(report["missing"] == [] for report in modules.values())

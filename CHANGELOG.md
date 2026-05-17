@@ -24,6 +24,7 @@ All notable Codex MK3 package updates are tracked here.
 - GitHub Actions CI for tests, MK3 verification, and diagnostics.
 - `VERSION`, `RELEASE_CHECKLIST.md`, and `DEPLOYMENT.md` release support files.
 - HTTP endpoint tests for `/status`, `/mk3/info`, `/submit`, and not-found responses.
+- Creator auth policy packet and documentation.
 
 ### Changed
 

@@ -15,6 +15,7 @@ The current package is designed to be run locally first. Wallet, purchase, and S
 - `system/` - Core behavior, parser schema, manifest, and mimic engine maps.
 - `web/` - Root UI layout, router maps, API endpoint definitions, and branding embed.
 - `app/` - App screen registry, logic flow, and permission maps.
+- `docs/creator-auth.md` - Creator auth policy notes and operator rules.
 - `branding/` - Identity, tone, and logo placement guidance.
 - `marketing/prelaunch/` - Five-phase prelaunch packet plan.
 - `habitat/` - Architecture spec and local container sketch.
@@ -199,6 +200,8 @@ Do not commit secrets, `.env` files, screenshots of keys, or terminal output tha
 ## Safety Boundary
 
 This repository may describe wallet, purchase, automation, and integration surfaces, but it does not perform purchases or move funds automatically. Any wallet, Stripe, payment, or purchase action must remain manual and operator-confirmed.
+
+Creator authority is described in `app/security/creator_auth/creator.auth` and documented in `docs/creator-auth.md`. The auth packet is policy only; it must not contain passwords, tokens, keys, recovery phrases, or other secret material.
 
 ## Next Build Targets
 

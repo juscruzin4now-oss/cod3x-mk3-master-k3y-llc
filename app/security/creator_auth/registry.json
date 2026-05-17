@@ -1,0 +1,14 @@
+{
+  "registry": "app.security.creator_auth",
+  "entries": [
+    {
+      "file_id": "APP.SECURITY.CREATOR_AUTH.V1",
+      "name": "creator.auth",
+      "type": "AUTH_POLICY",
+      "version": "1.0",
+      "path": "/app/security/creator_auth/creator.auth",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}
