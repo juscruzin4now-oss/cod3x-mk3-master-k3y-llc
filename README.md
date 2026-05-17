@@ -7,6 +7,9 @@ The current package is designed to be run locally first. Wallet, purchase, and S
 ## Repository Layout
 
 - `CHANGELOG.md` - Build history and release notes.
+- `DEPLOYMENT.md` - Local and promoted deployment notes.
+- `RELEASE_CHECKLIST.md` - Pre-tag release checklist.
+- `VERSION` - Current package version.
 - `mk3_system/` - Python CLI, orchestrator, diagnostics, component model, and local API server.
 - `scripts/` - PowerShell entry points for running MK3, diagnostics, module status, server, Git status, and Stripe balance checks.
 - `system/` - Core behavior, parser schema, manifest, and mimic engine maps.
@@ -161,6 +164,16 @@ https://github.com/juscruzin4now-oss/cod3x-mk3-master-k3y-llc.git
 
 GitHub Actions runs the Python tests, MK3 verification, and diagnostics on pushes to `main` and on pull requests.
 
+## Release Workflow
+
+Release notes live in `CHANGELOG.md`, deployment notes live in `DEPLOYMENT.md`, and pre-tag checks live in `RELEASE_CHECKLIST.md`.
+
+The current package version is tracked in:
+
+```text
+VERSION
+```
+
 ## Stripe Balance Check
 
 Stripe support is intentionally limited to a manual balance check. The repository does not store API keys.
@@ -189,6 +202,6 @@ This repository may describe wallet, purchase, automation, and integration surfa
 
 ## Next Build Targets
 
-- Add release/version tagging once the package reaches a stable milestone.
-- Expand endpoint tests if the command interface API gains new routes.
-- Add packaging notes for deployment beyond local operator use.
+- Keep release tags aligned with `VERSION` and `CHANGELOG.md`.
+- Expand endpoint tests when the command interface API gains new routes.
+- Promote deployment notes as the package moves beyond local operator use.

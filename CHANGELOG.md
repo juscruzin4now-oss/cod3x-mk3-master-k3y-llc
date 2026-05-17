@@ -4,9 +4,9 @@ All notable Codex MK3 package updates are tracked here.
 
 ## Unreleased
 
-- Add release/version tagging once the package reaches a stable milestone.
-- Expand endpoint tests if the command interface API gains new routes.
-- Add packaging notes for deployment beyond local operator use.
+- Keep release tags aligned with `VERSION` and `CHANGELOG.md`.
+- Expand endpoint tests when the command interface API gains new routes.
+- Promote deployment notes as the package moves beyond local operator use.
 
 ## 2026-05-17
 
@@ -22,6 +22,8 @@ All notable Codex MK3 package updates are tracked here.
 - API health-check script for `/status`, `/mk3/info`, and `/submit`.
 - Python tests for orchestrator, diagnostics, and server metadata helpers.
 - GitHub Actions CI for tests, MK3 verification, and diagnostics.
+- `VERSION`, `RELEASE_CHECKLIST.md`, and `DEPLOYMENT.md` release support files.
+- HTTP endpoint tests for `/status`, `/mk3/info`, `/submit`, and not-found responses.
 
 ### Changed
 
