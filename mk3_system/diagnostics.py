@@ -32,6 +32,32 @@ def run_diagnostics() -> dict[str, Any]:
     }
 
 
+def check_state(result: Any) -> str:
+    if result is True:
+        return "PASS"
+    if result is False:
+        return "FAIL"
+    return "INFO"
+
+
+def render_text_report(report: dict[str, Any]) -> str:
+    lines = [
+        "CODEX MK3 Diagnostics",
+        f"Status: {report['status']}",
+        f"Elapsed: {report['elapsed_ms']} ms",
+        "",
+        "Checks:",
+    ]
+    for check, result in report["checks"].items():
+        lines.append(f" - [{check_state(result)}] {check}: {result}")
+
+    if report["failed"]:
+        lines.extend(["", "Attention required:", *[f" - {name}" for name in report["failed"]]])
+    else:
+        lines.extend(["", "Attention required: none"])
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run Codex MK3 diagnostics.")
     parser.add_argument("--json", action="store_true")
@@ -41,9 +67,7 @@ def main() -> int:
     if args.json:
         print(json.dumps(report, indent=2))
     else:
-        print(f"{report['status']} elapsed_ms={report['elapsed_ms']}")
-        for check, result in report["checks"].items():
-            print(f" - {check}: {result}")
+        print(render_text_report(report))
     return 0 if not report["failed"] else 1
 
 

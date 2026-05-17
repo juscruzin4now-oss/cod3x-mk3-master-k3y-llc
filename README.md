@@ -75,6 +75,12 @@ Run diagnostics:
 .\scripts\run_diagnostics.ps1
 ```
 
+For machine-readable diagnostics:
+
+```powershell
+.\scripts\run_diagnostics.ps1 -Json
+```
+
 Run the Python test suite:
 
 ```powershell

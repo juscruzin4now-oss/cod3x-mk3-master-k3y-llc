@@ -1,3 +1,7 @@
+param(
+    [switch]$Json
+)
+
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
@@ -13,4 +17,8 @@ if ($Python -and $Python.Source -notlike "*\WindowsApps\python.exe") {
     throw "No Python runtime found."
 }
 
-& $PythonExe -m mk3_system.diagnostics --json
+if ($Json) {
+    & $PythonExe -m mk3_system.diagnostics --json
+} else {
+    & $PythonExe -m mk3_system.diagnostics
+}
