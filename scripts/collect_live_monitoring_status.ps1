@@ -43,6 +43,21 @@ $Status = [ordered]@{
 }
 
 $OutputPath = Join-Path $Root "web\ui\root\monitoring-status.json"
-$Status | ConvertTo-Json -Depth 10 | Set-Content -Encoding UTF8 $OutputPath
+$json = $Status | ConvertTo-Json -Depth 10
+$maxAttempts = 20
+$attempt = 0
+while ($true) {
+    try {
+        $json | Set-Content -Encoding UTF8 $OutputPath
+        break
+    }
+    catch [System.IO.IOException] {
+        $attempt++
+        if ($attempt -ge $maxAttempts) {
+            throw
+        }
+        Start-Sleep -Milliseconds 250
+    }
+}
 $Status["status_file"] = $OutputPath
 $Status | ConvertTo-Json -Depth 10
