@@ -42,3 +42,7 @@ All notable Codex MK3 package updates are tracked here.
 ### Safety
 
 - Documented that Stripe, wallet, payment, and purchase actions remain manual-only and operator-confirmed.
+
+## v3.0.2 - 2026-05-17
+- Forced release build.
+
