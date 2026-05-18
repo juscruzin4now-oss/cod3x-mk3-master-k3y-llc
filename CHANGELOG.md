@@ -4,6 +4,12 @@ All notable Codex MK3 package updates are tracked here.
 
 ## Unreleased
 
+## 2026-05-17 - 3.0.1
+
+### Changed
+
+- Force release patch bump from $CurrentVersion to $NewVersion.
+- Re-ran Creator-authorized release readiness, diagnostics, and tests.
 - Keep release tags aligned with `VERSION` and `CHANGELOG.md`.
 - Expand endpoint tests when the command interface API gains new routes.
 - Promote deployment notes as the package moves beyond local operator use.

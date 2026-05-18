@@ -10,7 +10,7 @@ def test_orchestrator_runs_all_required_components() -> None:
     report = orchestrator.report(results)
 
     assert report["package"] == "CODEX_MK3_STRUCTURAL_UPDATE"
-    assert report["version"] == "3.0.0"
+    assert report["version"] == "3.0.1"
     assert report["status"] == "MODULE_ONLINE"
     assert [result.component_id for result in results] == [
         "environment",

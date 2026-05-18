@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "3.0.1",
   "modules": [
     "autonomy_profile.cfg",
     "codex_mk3.schema",
@@ -7,5 +7,5 @@
   ],
   "checksum": "97221925aaf45991ef15d2fc1df93cf7dfe1678e510b69560650b8793c8415a3",
   "checksum_algorithm": "sha256",
-  "checksum_input": "3.0.0|autonomy_profile.cfg|codex_mk3.schema|mimic_engine.map"
+  "checksum_input": "3.0.1|autonomy_profile.cfg|codex_mk3.schema|mimic_engine.map"
 }

@@ -66,7 +66,7 @@ def mk3_info() -> dict[str, Any]:
     architecture = ROOT / "habitat" / "architecture.yaml"
     return {
         "name": "Codex MK3",
-        "version": "3.0.0",
+        "version": "3.0.1",
         "architecture_spec": str(architecture),
         "services": [
             "identity_access",

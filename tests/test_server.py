@@ -22,7 +22,7 @@ def test_mk3_info_exposes_expected_services() -> None:
     info = mk3_info()
 
     assert info["name"] == "Codex MK3"
-    assert info["version"] == "3.0.0"
+    assert info["version"] == "3.0.1"
     assert "command_interface_api" in info["services"]
     assert "modules" in info
 
