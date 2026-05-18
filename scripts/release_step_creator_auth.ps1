@@ -75,11 +75,12 @@ Invoke-Checked -FilePath $PythonExe -Arguments @($PythonArgs + @("-m", "pytest")
 if (-not $?) { throw "MK3 verification failed." }
 & .\scripts\run_diagnostics.ps1 | Set-Content -Encoding UTF8 $DiagnosticsPath
 if (-not $?) { throw "Diagnostics failed." }
-& $GitPath status --short | Set-Content -Encoding UTF8 $GitStatusPath
+$GitStatus = @(& $GitPath status --short)
+$GitStatus | Set-Content -Encoding UTF8 $GitStatusPath
 
 $StagedFiles = @(& $GitPath diff --cached --name-only)
 $StagedSecretFiles = @($StagedFiles | Where-Object { $_ -match '(^|/)\.env($|[./])|secret|token|password|wallet|recovery' })
-$Dirty = ((Get-Content $GitStatusPath) | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }).Count -gt 0
+$Dirty = ($GitStatus | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }).Count -gt 0
 
 $Blockers = @()
 if (-not $AuthorityOk) { $Blockers += "creator_auth_not_ready" }
