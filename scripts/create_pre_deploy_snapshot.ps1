@@ -28,11 +28,24 @@ $UntrackedPath = Join-Path $SnapshotDir "untracked-files.txt"
 $UntrackedHashPath = Join-Path $SnapshotDir "untracked-file-hashes.json"
 $ManifestPath = Join-Path $SnapshotDir "snapshot-manifest.json"
 
-& $GitPath status --short | Set-Content -Encoding UTF8 $StatusPath
-& $GitPath diff --binary | Set-Content -Encoding UTF8 $DiffPath
-& $GitPath ls-files | Set-Content -Encoding UTF8 $TrackedPath
+function Write-EvidenceFile {
+    param(
+        [object[]]$Content,
+        [string]$Path
+    )
+
+    $Content | Set-Content -Encoding UTF8 $Path
+    if (-not (Test-Path $Path)) {
+        New-Item -ItemType File -Path $Path | Out-Null
+    }
+}
+
+Write-EvidenceFile -Content @(& $GitPath status --short) -Path $StatusPath
+$Diff = @(& $GitPath diff --binary)
+Write-EvidenceFile -Content $Diff -Path $DiffPath
+Write-EvidenceFile -Content @(& $GitPath ls-files) -Path $TrackedPath
 $Untracked = @(& $GitPath ls-files --others --exclude-standard | Where-Object { $_ -notlike "ops/snapshots/*" })
-$Untracked | Set-Content -Encoding UTF8 $UntrackedPath
+Write-EvidenceFile -Content $Untracked -Path $UntrackedPath
 $UntrackedHashes = [ordered]@{}
 foreach ($Path in $Untracked) {
     if (Test-Path $Path -PathType Leaf) {
