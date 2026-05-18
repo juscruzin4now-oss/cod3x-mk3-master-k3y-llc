@@ -54,9 +54,22 @@ if ($env:PROD_TLS_READY -and $env:PROD_TLS_READY -notin @("true", "TRUE", "ready
 $ProductionPackage = Read-JsonFile (Get-LatestJsonFile -Path "ops\production" -Filter "production-promotion-manifest.json")
 $LaunchSchedule = Read-JsonFile (Get-LatestJsonFile -Path "ops\launch" -Filter "public-launch-schedule.json")
 $Monitoring = & .\scripts\collect_live_monitoring_status.ps1 | ConvertFrom-Json
+$Git = Get-Command git -ErrorAction SilentlyContinue
+if (-not $Git) {
+    $Fallback = "C:\Program Files\Git\cmd\git.exe"
+    if (Test-Path $Fallback) {
+        $GitPath = $Fallback
+    } else {
+        throw "Git is not available on PATH and was not found at $Fallback."
+    }
+} else {
+    $GitPath = $Git.Source
+}
+$CurrentHead = (& $GitPath rev-parse HEAD).Trim()
 
 $CommandAccepted = $CreatorCommand -eq "EXECUTE PROD PROMOTION NOW"
 $PackageReady = $ProductionPackage -and $ProductionPackage.status -eq "PRODUCTION_PROMOTION_PACKAGE_READY"
+$PackageMatchesHead = $PackageReady -and $ProductionPackage.head -eq $CurrentHead
 $SnapshotReady = $ProductionPackage -and -not [string]::IsNullOrWhiteSpace($ProductionPackage.pre_promotion_snapshot)
 $LaunchReady = $LaunchSchedule -and $LaunchSchedule.status -eq "PUBLIC_LAUNCH_SCHEDULED"
 
@@ -65,6 +78,7 @@ if (-not $CommandAccepted) { $Blockers += "explicit_execute_command_missing" }
 if ($Missing.Count -gt 0) { $Blockers += "missing_production_bindings" }
 if ($Invalid.Count -gt 0) { $Blockers += "invalid_production_bindings" }
 if (-not $PackageReady) { $Blockers += "production_package_not_ready" }
+if ($PackageReady -and -not $PackageMatchesHead) { $Blockers += "production_package_head_mismatch" }
 if (-not $SnapshotReady) { $Blockers += "pre_promotion_snapshot_missing" }
 if (-not $LaunchReady) { $Blockers += "public_launch_not_scheduled" }
 if ($Monitoring.status -ne "LIVE_MONITORING_HEALTHY") { $Blockers += "live_monitoring_not_healthy" }
@@ -82,6 +96,7 @@ $Attempt = [ordered]@{
     blockers = $Blockers
     missing_production_bindings = $Missing
     invalid_production_bindings = $Invalid
+    current_head = $CurrentHead
     production_package = $ProductionPackage
     launch_schedule_status = $LaunchSchedule.status
     monitoring_status = $Monitoring.status
