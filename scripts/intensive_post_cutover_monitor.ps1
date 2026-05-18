@@ -20,6 +20,9 @@ for ($Index = 1; $Index -le $Iterations; $Index++) {
     $Sample = & .\scripts\collect_live_monitoring_status.ps1 | Tee-Object -FilePath $SamplePath | ConvertFrom-Json
     $Samples += $SamplePath
 
+    Write-Host ("[intensive-monitor] sample {0}/{1} collected: status={2} dev_canary={3} stage_report={4}" -f `
+        $Index, $Iterations, $Sample.status, $Sample.dev_canary.status, $Sample.stage_report.status)
+
     if ($Sample.status -ne "LIVE_MONITORING_HEALTHY") {
         $HighSeverityAlerts += "live_monitoring_$($Sample.status)_sample_$Index"
     }
@@ -31,7 +34,14 @@ for ($Index = 1; $Index -le $Iterations; $Index++) {
     }
 
     if ($Index -lt $Iterations) {
-        Start-Sleep -Seconds $IntervalSeconds
+        $HeartbeatSeconds = 60
+        $Remaining = $IntervalSeconds
+        while ($Remaining -gt 0) {
+            $SleepSeconds = [Math]::Min($HeartbeatSeconds, $Remaining)
+            Write-Host ("[intensive-monitor] sleeping {0}s (next sample in {1}s)" -f $SleepSeconds, $Remaining)
+            Start-Sleep -Seconds $SleepSeconds
+            $Remaining -= $SleepSeconds
+        }
     }
 }
 

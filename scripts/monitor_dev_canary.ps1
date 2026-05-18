@@ -6,6 +6,16 @@ $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
 
+function Get-FreeTcpPort {
+    $listener = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, 0)
+    $listener.Start()
+    try {
+        return $listener.LocalEndpoint.Port
+    } finally {
+        $listener.Stop()
+    }
+}
+
 $BundledPython = Join-Path $env:USERPROFILE ".cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
 $Python = Get-Command python -ErrorAction SilentlyContinue
 $PyLauncher = Get-Command py -ErrorAction SilentlyContinue
@@ -35,6 +45,16 @@ function Invoke-JsonPython {
 
 $Diagnostics = Invoke-JsonPython "from mk3_system.diagnostics import run_diagnostics; import json; print(json.dumps(run_diagnostics()))"
 $Canary = Invoke-JsonPython "from mk3_system.server import invoke_primitive; import json; print(json.dumps(invoke_primitive('F', {'scope':'dev','canary':True})))"
+
+$PortInUse = $false
+try {
+    $PortInUse = Test-NetConnection -ComputerName "127.0.0.1" -Port $Port -InformationLevel Quiet
+} catch {
+    $PortInUse = $false
+}
+if ($PortInUse) {
+    $Port = Get-FreeTcpPort
+}
 
 $BaseUrl = "http://127.0.0.1:$Port"
 $Server = Start-Process -FilePath $PythonExe -ArgumentList @($PythonArgs + @("-m", "mk3_system.server", "--host", "127.0.0.1", "--port", $Port)) -WorkingDirectory $Root -WindowStyle Hidden -PassThru
