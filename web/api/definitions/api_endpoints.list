@@ -14,6 +14,8 @@ GET /status
 POST /submit
 GET /mk3/info
 GET /auth/creator
+GET /auth/primitives
+POST /auth/primitives/invoke
 
 <<PAYLOAD_END>>
 

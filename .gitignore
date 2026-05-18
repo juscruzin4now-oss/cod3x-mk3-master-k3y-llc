@@ -6,5 +6,13 @@ __pycache__/
 .env
 .env.*
 !.env.example
+ops/*.jsonl
+ops/launch/
+ops/production/
+ops/releases/
+ops/reports/
+ops/snapshots/
+ops/stage/
+web/ui/root/monitoring-status.json
 .DS_Store
 Thumbs.db

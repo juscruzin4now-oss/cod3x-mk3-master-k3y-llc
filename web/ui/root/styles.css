@@ -42,6 +42,86 @@ nav {
   gap: 14px;
 }
 
+.monitor-shell {
+  width: min(1280px, calc(100% - 40px));
+}
+
+.monitor-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: 28px;
+  align-items: stretch;
+  padding-bottom: 8px;
+}
+
+.monitor-hero h1 {
+  margin: 14px 0 12px;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.metric-strip,
+.dashboard-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.metric-strip {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.metric-strip article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--panel);
+}
+
+.metric-strip span,
+.kv dt {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.metric-strip strong {
+  display: block;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+  font-size: 22px;
+}
+
+.dashboard-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.kv {
+  display: grid;
+  gap: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.kv:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.kv dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;
@@ -136,5 +216,11 @@ a:hover {
 
   .signal {
     margin-top: 24px;
+  }
+
+  .monitor-hero,
+  .dashboard-grid,
+  .metric-strip {
+    grid-template-columns: 1fr;
   }
 }

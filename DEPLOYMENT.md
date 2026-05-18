@@ -33,9 +33,13 @@ Before using containers, confirm:
 ## Promotion Guidelines
 
 - Run tests, verification, diagnostics, and API health checks before promotion.
+- Use `.github/workflows/promotion.yml` for gated staging or production promotion.
+- Run `scripts/pre_deploy_diagnostics.ps1` before any hosted deployment change.
 - Keep `VERSION`, `CHANGELOG.md`, and release tags aligned.
 - Prefer read-only or status endpoints until deployment boundaries are reviewed.
 - Keep Stripe, wallet, payment, and purchase operations manual-only.
+
+See `docs/deployment-pipeline.md` for CI/CD, Stripe test checkout, and pre-deploy diagnostics details.
 
 ## Rollback
 

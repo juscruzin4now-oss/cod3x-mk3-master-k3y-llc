@@ -16,6 +16,9 @@ The current package is designed to be run locally first. Wallet, purchase, and S
 - `web/` - Root UI layout, router maps, API endpoint definitions, and branding embed.
 - `app/` - App screen registry, logic flow, and permission maps.
 - `docs/creator-auth.md` - Creator auth policy notes and operator rules.
+- `docs/primitive-access.md` - Creator-level primitive access notes for primitives A-J.
+- `docs/deployment-pipeline.md` - CI/CD promotion, pre-deploy diagnostics, and Stripe test checkout notes.
+- `docs/public-launch-plan.md` - Launch readiness gates, workstreams, and no-go conditions.
 - `branding/` - Identity, tone, and logo placement guidance.
 - `marketing/prelaunch/` - Five-phase prelaunch packet plan.
 - `habitat/` - Architecture spec and local container sketch.
@@ -74,10 +77,22 @@ Verify the package:
 .\scripts\verify_mk3.ps1
 ```
 
+Record the Creator-authorized release step:
+
+```powershell
+.\scripts\release_step_creator_auth.ps1
+```
+
 Run diagnostics:
 
 ```powershell
 .\scripts\run_diagnostics.ps1
+```
+
+Monitor the dev canary:
+
+```powershell
+.\scripts\monitor_dev_canary.ps1
 ```
 
 For machine-readable diagnostics:
@@ -203,7 +218,7 @@ Do not commit secrets, `.env` files, screenshots of keys, or terminal output tha
 
 This repository may describe wallet, purchase, automation, and integration surfaces, but it does not perform purchases or move funds automatically. Any wallet, Stripe, payment, or purchase action must remain manual and operator-confirmed.
 
-Creator authority is described in `app/security/creator_auth/creator.auth` and documented in `docs/creator-auth.md`. The auth packet is policy only; it must not contain passwords, tokens, keys, recovery phrases, or other secret material.
+Creator authority is described in `app/security/creator_auth/creator.auth` and documented in `docs/creator-auth.md`. Primitive access is described in `app/security/primitives/primitive_access.map` and documented in `docs/primitive-access.md`. These packets are policy only; they must not contain passwords, tokens, keys, recovery phrases, or other secret material.
 
 ## Next Build Targets
 

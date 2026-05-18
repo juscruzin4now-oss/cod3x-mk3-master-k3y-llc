@@ -15,6 +15,15 @@ Use this checklist before tagging a Codex MK3 release.
 python -m pytest
 powershell -ExecutionPolicy Bypass -File .\scripts\verify_mk3.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\run_diagnostics.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\release_step_creator_auth.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\pre_deploy_diagnostics.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\create_pre_deploy_snapshot.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\promote_to_stage.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\stage_integration_load_tests.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\continue_stage_tests_and_report.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\prepare_production_promotion_package.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\schedule_public_launch.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\execute_prod_promotion_and_verify.ps1 -CreatorCommand "EXECUTE PROD PROMOTION NOW"
 ```
 
 For API checks:

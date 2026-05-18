@@ -18,7 +18,9 @@ $Modules = [ordered]@{
     APP = @(
         @{ Source = "ui_frameset.json"; Target = "app\ui\screens" },
         @{ Source = "app_logic.flow"; Target = "app\logic\flow" },
-        @{ Source = "permissions.map"; Target = "app\security\permissions" }
+        @{ Source = "permissions.map"; Target = "app\security\permissions" },
+        @{ Source = "creator.auth"; Target = "app\security\creator_auth" },
+        @{ Source = "primitive_access.map"; Target = "app\security\primitives" }
     )
     MANTRA = @(
         @{ Source = "codex_identity.txt"; Target = "branding\core" },

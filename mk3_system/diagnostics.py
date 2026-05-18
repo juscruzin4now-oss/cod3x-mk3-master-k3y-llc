@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 from typing import Any
 
-from .server import module_status
+from .server import module_status, primitive_access_status
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,12 +15,14 @@ ROOT = Path(__file__).resolve().parents[1]
 def run_diagnostics() -> dict[str, Any]:
     started = time.perf_counter()
     modules = module_status()
+    primitives = primitive_access_status()
     memory_probe = ROOT / "system" / "manifest" / "core_manifest.json"
     checks = {
         "autonomy_loop": modules["CORE"]["status"] == "CORE_ONLINE",
         "memory_write_read": memory_probe.exists() and memory_probe.read_text(encoding="utf-8").strip() != "",
         "api_latency": True,
         "security_boundary": (ROOT / "app" / "security" / "permissions" / "permissions.map").exists(),
+        "creator_primitives_a_j": primitives["status"] == "PRIMITIVES_UNLOCKED",
         "stress_100_to_500_users": "planned",
     }
     failed = [name for name, result in checks.items() if result is False]

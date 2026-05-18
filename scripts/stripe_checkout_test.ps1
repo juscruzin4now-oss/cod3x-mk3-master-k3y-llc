@@ -13,7 +13,7 @@ if ($Python -and $Python.Source -notlike "*\WindowsApps\python.exe") {
     throw "No Python runtime found."
 }
 
-& $PythonExe -m integrations.stripe_balance
+& $PythonExe -m integrations.stripe_checkout
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }

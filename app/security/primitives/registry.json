@@ -1,0 +1,14 @@
+{
+  "registry": "app.security.primitives",
+  "entries": [
+    {
+      "file_id": "APP.SECURITY.PRIMITIVES.V1",
+      "name": "primitive_access.map",
+      "type": "ACCESS_MAP",
+      "version": "1.0",
+      "path": "/app/security/primitives/primitive_access.map",
+      "status": "READY",
+      "registered": true
+    }
+  ]
+}

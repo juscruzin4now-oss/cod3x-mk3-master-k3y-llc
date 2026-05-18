@@ -10,4 +10,6 @@ def test_static_api_definition_lists_runtime_endpoints() -> None:
     assert "GET /status" in endpoints
     assert "GET /mk3/info" in endpoints
     assert "GET /auth/creator" in endpoints
+    assert "GET /auth/primitives" in endpoints
+    assert "POST /auth/primitives/invoke" in endpoints
     assert "POST /submit" in endpoints

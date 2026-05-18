@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MK3 Live Monitoring</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <strong>Codex MK3</strong>
+      <nav aria-label="Primary">
+        <a href="./index.html">Home</a>
+        <a href="./monitoring.html">Monitoring</a>
+      </nav>
+    </header>
+
+    <main class="shell monitor-shell">
+      <section class="monitor-hero">
+        <div>
+          <span id="overall" class="status">LOADING</span>
+          <h1>Live Monitoring</h1>
+          <p id="checked">Collecting latest canary, stage, launch, and production package state.</p>
+        </div>
+        <div class="metric-strip" aria-label="Primary metrics">
+          <article>
+            <span>Canary</span>
+            <strong id="canary">--</strong>
+          </article>
+          <article>
+            <span>Stage</span>
+            <strong id="stage">--</strong>
+          </article>
+          <article>
+            <span>Launch</span>
+            <strong id="launch">--</strong>
+          </article>
+          <article>
+            <span>Prod Change</span>
+            <strong id="prod-change">--</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel">
+          <h2>Stage Report</h2>
+          <dl id="stage-report"></dl>
+        </article>
+        <article class="panel">
+          <h2>Production Candidate</h2>
+          <dl id="production-package"></dl>
+        </article>
+        <article class="panel">
+          <h2>Launch Gate</h2>
+          <dl id="launch-gate"></dl>
+        </article>
+        <article class="panel">
+          <h2>Snapshot</h2>
+          <dl id="snapshot"></dl>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Local operator dashboard. Refreshes every 30 seconds from monitoring-status.json.</span>
+    </footer>
+
+    <script>
+      const labels = {
+        true: "yes",
+        false: "no",
+        null: "not bound",
+        undefined: "not bound"
+      };
+
+      function valueText(value) {
+        if (value === null || value === undefined || value === "") return "not bound";
+        if (typeof value === "boolean") return labels[value];
+        if (Array.isArray(value)) return value.length ? value.join(", ") : "none";
+        return String(value);
+      }
+
+      function setDl(id, rows) {
+        document.getElementById(id).innerHTML = rows.map(([term, value]) => `
+          <div class="kv"><dt>${term}</dt><dd>${valueText(value)}</dd></div>
+        `).join("");
+      }
+
+      async function loadStatus() {
+        const response = await fetch("./monitoring-status.json", { cache: "no-store" });
+        const data = await response.json();
+        document.getElementById("overall").textContent = data.status;
+        document.getElementById("checked").textContent = `Last checked ${data.checked_at_utc}`;
+        document.getElementById("canary").textContent = valueText(data.dev_canary?.status);
+        document.getElementById("stage").textContent = valueText(data.stage_report?.status);
+        document.getElementById("launch").textContent = valueText(data.launch_schedule?.status);
+        document.getElementById("prod-change").textContent = valueText(data.production_change_started);
+
+        const latestStageRun = data.stage_report?.stage_runs?.[data.stage_report.stage_runs.length - 1] || {};
+        setDl("stage-report", [
+          ["Status", data.stage_report?.status],
+          ["Report", data.stage_report?.report_id],
+          ["Warnings", data.stage_report?.warnings],
+          ["Latest requests", latestStageRun.requests],
+          ["Latest p95", latestStageRun.p95_latency_ms ? `${latestStageRun.p95_latency_ms} ms` : null],
+          ["Failures", latestStageRun.failures]
+        ]);
+        setDl("production-package", [
+          ["Status", data.production_package?.status],
+          ["Package", data.production_package?.package_id],
+          ["SHA-256", data.production_package?.artifact_sha256],
+          ["Stage report", data.production_package?.stage_report_status]
+        ]);
+        setDl("launch-gate", [
+          ["Status", data.launch_schedule?.status],
+          ["Post-deploy", data.launch_schedule?.gates?.post_deploy],
+          ["Launch values", data.launch_schedule?.gates?.launch_requirements_bound],
+          ["Prod values", data.launch_schedule?.gates?.production_requirements_bound],
+          ["Missing launch", data.launch_schedule?.missing_launch_requirements],
+          ["Missing prod", data.launch_schedule?.missing_production_requirements]
+        ]);
+        setDl("snapshot", [
+          ["Snapshot", data.pre_promotion_snapshot?.snapshot_id],
+          ["Immutable", data.pre_promotion_snapshot?.immutable_record],
+          ["Head", data.pre_promotion_snapshot?.head],
+          ["Prod change", data.pre_promotion_snapshot?.production_change_started]
+        ]);
+      }
+
+      loadStatus();
+      window.setInterval(loadStatus, 30000);
+    </script>
+  </body>
+</html>

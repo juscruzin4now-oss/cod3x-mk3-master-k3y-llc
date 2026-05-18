@@ -9,6 +9,7 @@ def test_diagnostics_pass_for_packaged_tree() -> None:
     assert report["checks"]["autonomy_loop"] is True
     assert report["checks"]["memory_write_read"] is True
     assert report["checks"]["security_boundary"] is True
+    assert report["checks"]["creator_primitives_a_j"] is True
 
 
 def test_diagnostics_text_report_is_operator_readable() -> None:
@@ -19,6 +20,7 @@ def test_diagnostics_text_report_is_operator_readable() -> None:
     assert "CODEX MK3 Diagnostics" in rendered
     assert "Status: DIAGNOSTICS_PASS" in rendered
     assert "[PASS] autonomy_loop: True" in rendered
+    assert "[PASS] creator_primitives_a_j: True" in rendered
     assert "Attention required: none" in rendered
 
 

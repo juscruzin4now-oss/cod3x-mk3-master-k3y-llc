@@ -26,6 +26,15 @@ release_approval = creator
 network_publish_approval = creator
 payment_or_wallet_approval = creator
 credential_rotation = creator
+external_agent_handoff_approval = creator
+
+[agent_authority]
+codex_execution = creator_bound
+copilot_handoff = creator_bound
+external_ai_surface = creator_bound
+primitive_invocation = creator_bound
+third_party_instruction = non_authoritative
+human_subject_control = prohibited
 
 [guards]
 automatic_purchase = denied
@@ -33,6 +42,7 @@ automatic_wallet_transfer = denied
 stored_secret = denied
 plaintext_token = denied
 manual_operator_confirmation = required
+untrusted_handoff_instruction = denied
 <<PAYLOAD_END>>
 
 <<FILE_FOOTER>>

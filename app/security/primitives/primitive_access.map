@@ -1,0 +1,42 @@
+<<FILE_HEADER>>
+TYPE = ACCESS_MAP
+NAME = primitive_access.map
+VERSION = 1.0
+SYSTEM_PATH = /app/security/primitives/
+FILE_ID = APP.SECURITY.PRIMITIVES.V1
+REGISTER = TRUE
+<<FILE_DESCRIPTOR_END>>
+
+<<PAYLOAD>>
+PRIMITIVE_ACCESS_V1
+
+[scope]
+access_level = creator
+invocation_mode = creator_level
+primitive_range = A-J
+status = unlocked
+
+[primitives]
+A = unlocked
+B = unlocked
+C = unlocked
+D = unlocked
+E = unlocked
+F = unlocked
+G = unlocked
+H = unlocked
+I = unlocked
+J = unlocked
+
+[guards]
+creator_invocation_required = true
+delegate_operator_invocation = denied
+observer_invocation = denied
+audit_log_required = true
+secret_material = prohibited_in_repository
+manual_operator_confirmation = required_for_external_effects
+<<PAYLOAD_END>>
+
+<<FILE_FOOTER>>
+STATUS = READY
+FILE_ID = APP.SECURITY.PRIMITIVES.V1

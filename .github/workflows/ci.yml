@@ -32,3 +32,7 @@ jobs:
       - name: Run diagnostics
         shell: pwsh
         run: ./scripts/run_diagnostics.ps1
+
+      - name: Run pre-deployment diagnostics
+        shell: pwsh
+        run: ./scripts/pre_deploy_diagnostics.ps1 -SkipApiHealth
